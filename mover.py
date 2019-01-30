@@ -2,6 +2,7 @@ import os
 import shutil
 import glob
 import argparse
+from tqdm import tqdm
 
 
 def parse_args():
@@ -22,7 +23,7 @@ def move_file(type, source, dest):
     except:
         print("folder already exist")
 
-    for file in glob.glob("{}/*{}".format(source, type)):
+    for file in tqdm(glob.glob("{}/*{}".format(source, type))):
         shutil.move(file, "{}".format(dest))
     print("{} files was moved successfully".format(type))
 
